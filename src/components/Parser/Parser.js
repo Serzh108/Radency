@@ -52,31 +52,23 @@ function CSVReader1() {
   const validateData = data => {
     console.log('validateData', data[0].data);
     console.log('Phone: ', data[0].data[1]);
-    console.log('License number: ', data[0].data[9]);
     data &&
       data.forEach((item, idx, newAr) => {
-        console.log('item License: ', item.data[9]);
-        const subAr = item.data.map((el, index, rowArr) => {
-          console.log(`el- ${idx}-${index} : `, el);
+        console.log('item data.length: ', item.data.length);
+        const subAr =
+          item.data.length > 1
+            ? item.data.map((el, index, rowArr) => {
+                console.log(`el- ${idx}-${index} : `, el);
 
-          try {
-            if (validateAr[index](el, index, rowArr)) return false;
-          } catch (error) {
-            console.log('error', error.message);
-            setCriticalError(true);
-          }
-          // if (index === 0 && validateAr[index](el, index, rowArr)) return false;
-          // if (index === 1 && validateAr[index](el, index, rowArr)) return false;
-          // if (index === 2 && validateAr[index](el, index, rowArr)) return false;
-          // if (index === 3 && validateAr[index](el)) return false;
-          // if (index === 4 && validateAr[index](el, index, rowArr)) return false;
-          // if (index === 5 && validateAr[index](el, index, rowArr)) return false;
-          // if (index === 6 && validateAr[index](el, index, rowArr)) return false;
-          // if (index === 7 && validateAr[index](el, index, rowArr)) return false;
-          // if (index === 8 && validateAr[index](el, index, rowArr)) return false;
-          // if (index === 9 && validateAr[index](el, index, rowArr)) return false;
-          return el.length > 12 ? false : true;
-        });
+                try {
+                  if (validateAr[index](el, index, rowArr)) return false;
+                } catch (error) {
+                  console.log('error', error.message);
+                  setCriticalError(true);
+                }
+                return el.length > 12 ? false : true;
+              })
+            : [];
         console.log('subAr', subAr);
         newAr[idx].myErrors = subAr;
       });

@@ -36,7 +36,8 @@ const secondColumn = (el, index, rowArr) => {
 };
 
 // Email
-const thirdColumn = el => {
+const thirdColumn = (el, index, rowArr) => {
+  console.log(`rowArr #${index} : `, rowArr);
   // if (el.length === 0) {
   //   throw new SyntaxError('Missing critical data!');
   // }
