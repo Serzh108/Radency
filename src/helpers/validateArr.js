@@ -1,4 +1,4 @@
-const statesToSort = {
+const STATETOSHORT = {
   alabama: 'AL',
   michigan: 'MI',
   nevada: 'NV',
@@ -36,8 +36,11 @@ const secondColumn = (el, index, rowArr) => {
 };
 
 // Email
-const thirdColumn = (el, index, rowArr) => {
-  console.log(`rowArr #${index} : `, rowArr);
+const thirdColumn = (el, index, rowArr, newAr) => {
+  // console.log(`!!! el: `, el);
+  // console.log(`rowArr #${index} : `, rowArr);
+  // console.log(`!!! newAr: `, newAr);
+
   // if (el.length === 0) {
   //   throw new SyntaxError('Missing critical data!');
   // }
@@ -90,13 +93,13 @@ const eighthColumn = (el, index, rowArr) => {
   const elArr = el.split(',');
 
   if (elArr.length === 1 && el.length > 2) {
-    rowArr[index] = statesToSort[el.toLowerCase()];
+    rowArr[index] = STATETOSHORT[el.toLowerCase()];
   }
 
   if (elArr.length > 1) {
     elArr.forEach((item, idx, arr) => {
       if (item.trim().length > 2) {
-        arr[idx] = statesToSort[item.toLowerCase().trim()];
+        arr[idx] = STATETOSHORT[item.toLowerCase().trim()];
       } else {
         arr[idx] = item.trim();
       }

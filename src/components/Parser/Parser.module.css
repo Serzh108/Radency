@@ -1,21 +1,28 @@
+.aside {
+  display: flex;
+  flex-direction: row;
+  width: 30vw;
+  margin-bottom: 24px;
+  font-size: 16px;
+}
+
 .btn {
-  border-radius: 0;
+  width: 50%;
   margin-left: 0;
-  margin-right: 0;
-  width: '40%';
-  padding-left: 0;
-  padding-right: 0;
+  margin-right: 8px;
+  padding: 0.5em 1em;
+  font-size: 16px;
+  border-radius: 0;
+  outline: none;
+  cursor: pointer;
 }
 
 .fileName {
+  width: 50%;
+  height: 36px;
   border: 1px solid #ccc;
-  height: 45px;
-  line-height: 2.5;
-  margin-top: 5px;
-  margin-bottom: 5px;
+  line-height: 36px;
   padding-left: 13px;
-  padding-top: 3px;
-  width: 60%;
 }
 
 .wrongData {

@@ -54,14 +54,14 @@ function CSVReader1() {
     console.log('Phone: ', data[0].data[1]);
     data &&
       data.forEach((item, idx, newAr) => {
-        console.log('item data.length: ', item.data.length);
         const subAr =
           item.data.length > 1
             ? item.data.map((el, index, rowArr) => {
-                console.log(`el- ${idx}-${index} : `, el);
+                // !!! TEMP
+                // console.log(`el- ${idx}-${index} : `, el);
 
                 try {
-                  if (validateAr[index](el, index, rowArr)) return false;
+                  if (validateAr[index](el, index, rowArr, newAr)) return false;
                 } catch (error) {
                   console.log('error', error.message);
                   setCriticalError(true);
@@ -73,6 +73,55 @@ function CSVReader1() {
         newAr[idx].myErrors = subAr;
       });
     console.log('!!!  newAr = ', data);
+    // ----------------------
+    data &&
+      data.forEach((item, idx, newAr) => {
+        // console.log('item data.length: ', item.data.length);
+        console.log(
+          ` --- item idx: ${idx}, Phone: ${item.data[1]}, Email: ${item.data[2]}`,
+        );
+        const currentPhone = item.data[1];
+        let duplicatePhoneIndex = null;
+        const currentEmail = item.data[2];
+        let duplicateEmailIndex = null;
+        newAr.forEach((arr, i) => {
+          if (currentPhone === arr.data[1] && i !== idx) {
+            duplicatePhoneIndex =
+              duplicatePhoneIndex !== null ? duplicatePhoneIndex : i;
+            console.log('!!! Match Phone ID: ', i);
+          }
+          if (currentEmail === arr.data[2] && i !== idx) {
+            duplicateEmailIndex =
+              duplicateEmailIndex !== null ? duplicateEmailIndex : i;
+            console.log('!!! Match Email ID: ', i);
+          }
+        });
+        console.log('duplicatePhoneIndex =', duplicatePhoneIndex);
+        console.log('duplicateEmailIndex =', duplicateEmailIndex);
+        let lessIndex;
+        if (duplicatePhoneIndex !== null && duplicateEmailIndex !== null) {
+          if (duplicatePhoneIndex < duplicateEmailIndex) {
+            lessIndex = duplicatePhoneIndex;
+            newAr[idx].myErrors[1] = false;
+          } else {
+            lessIndex = duplicateEmailIndex;
+            newAr[idx].myErrors[2] = false;
+          }
+        }
+        if (duplicatePhoneIndex !== null && duplicateEmailIndex === null) {
+          lessIndex = duplicatePhoneIndex;
+          newAr[idx].myErrors[1] = false;
+        }
+        if (duplicatePhoneIndex === null && duplicateEmailIndex !== null) {
+          lessIndex = duplicateEmailIndex;
+          newAr[idx].myErrors[2] = false;
+        }
+
+        console.log('Less Index =', lessIndex);
+        newAr[idx].duplicate = lessIndex;
+        console.log(`newAr[${idx}].myErrors[1] = `, newAr[idx].myErrors[1]);
+      });
+    // ----------------------
   };
 
   const handleOpenDialog = e => {
@@ -112,7 +161,7 @@ function CSVReader1() {
 
   return (
     <>
-      <h5>Basic Upload #1</h5>
+      {/* <h5>Basic Upload #1</h5> */}
       <CSVReader
         ref={buttonRef}
         onFileLoad={handleOnFileLoad}
@@ -120,21 +169,25 @@ function CSVReader1() {
         noClick
         noDrag
         onRemoveFile={handleOnRemoveFile}
+        style={{
+          heigth: 90,
+        }}
       >
         {({ file }) => (
           <aside
-            style={{
-              display: 'flex',
-              flexDirection: 'row',
-              marginBottom: 10,
-            }}
+            className={styles.aside}
+            // style={{
+            //   display: 'flex',
+            //   flexDirection: 'row',
+            //   marginBottom: 24,
+            // }}
           >
             <button
               type="button"
               onClick={handleOpenDialog}
               className={styles.btn}
             >
-              Browse file
+              Import users
             </button>
             <div className={styles.fileName}>{file && file.name}</div>
             {/* <button
@@ -177,7 +230,7 @@ function CSVReader1() {
                           {' ' + item.myErrors[index]}
                         </td>
                       ))}
-                      <td>{(idx + 1) * 2}</td>
+                      <td>{item.duplicate && item.duplicate + 1}</td>
                     </tr>
                   ),
               )}

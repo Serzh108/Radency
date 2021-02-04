@@ -1,7 +1,11 @@
+table {
+  max-width: 90vw;
+}
+
 table,
 td,
 th {
-  padding: 1em;
+  padding: 0.6em 0.8em;
   border-collapse: collapse;
   border: 1px solid #282c34;
 }
