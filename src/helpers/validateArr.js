@@ -37,13 +37,6 @@ const secondColumn = (el, index, rowArr) => {
 
 // Email
 const thirdColumn = (el, index, rowArr, newAr) => {
-  // console.log(`!!! el: `, el);
-  // console.log(`rowArr #${index} : `, rowArr);
-  // console.log(`!!! newAr: `, newAr);
-
-  // if (el.length === 0) {
-  //   throw new SyntaxError('Missing critical data!');
-  // }
   emptyCell(el);
 };
 
@@ -66,7 +59,6 @@ const fifthColumn = (el, index, rowArr) => {
 
 // Yearly Income
 const sixthColumn = el => {
-  // const twoSignAfterDot = el.slice(el.indexOf('.') + 1).length !== 2;
   if (el % 1 !== 0) {
     if (el.slice(el.indexOf('.') + 1).length !== 2) {
       return true;
@@ -112,7 +104,6 @@ const eighthColumn = (el, index, rowArr) => {
 const ninthColumn = el => {
   const CurrentDate = new Date();
   const ourDate = new Date(el);
-  // console.log('ninthColumn = ', el);
   if (ourDate < CurrentDate) {
     return true;
   }
@@ -127,9 +118,6 @@ const tenthColumn = (el, index, rowArr) => {
   if (el.length !== 6 || /\W|_/.test(el)) {
     return true;
   }
-  // if (/\W/.test(el)) {
-  //   return true;
-  // }
 };
 
 const validateAr = [

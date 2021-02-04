@@ -9,3 +9,8 @@ th {
   border-collapse: collapse;
   border: 1px solid #282c34;
 }
+
+.wrongData {
+  color: #fff;
+  background-color: #f00;
+}
