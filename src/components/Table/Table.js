@@ -42,7 +42,7 @@ function Table({ state }) {
                       {/* {' ' + item.myErrors[index]} */}
                     </td>
                   ))}
-                  <td>{item.duplicate && item.duplicate + 1}</td>
+                  <td>{item.duplicate && item.duplicate}</td>
                 </tr>
               ),
           )}

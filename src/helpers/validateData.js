@@ -25,23 +25,23 @@ const validateData = (data, setCriticalError) => {
     data.forEach((item, idx, newAr) => {
       // console.log(` --- item idx: ${idx}, Phone: ${item.data[1]}, Email: ${item.data[2]}`);
       const currentPhone = item.data[1];
-      let duplicatePhoneIndex = null;
+      let duplicatePhoneIndex = -1;
       const currentEmail = item.data[2] && item.data[2].toLowerCase();
-      let duplicateEmailIndex = null;
+      let duplicateEmailIndex = -1;
       newAr.forEach((arr, i) => {
         if (currentPhone === arr.data[1] && i !== idx) {
           duplicatePhoneIndex =
-            duplicatePhoneIndex !== null ? duplicatePhoneIndex : i;
+            duplicatePhoneIndex !== -1 ? duplicatePhoneIndex : i + 1;
         }
 
         const comparedEmail = arr.data[2] && arr.data[2].toLowerCase();
         if (currentEmail === comparedEmail && i !== idx) {
           duplicateEmailIndex =
-            duplicateEmailIndex !== null ? duplicateEmailIndex : i;
+            duplicateEmailIndex !== -1 ? duplicateEmailIndex : i + 1;
         }
       });
       let lessIndex;
-      if (duplicatePhoneIndex !== null && duplicateEmailIndex !== null) {
+      if (duplicatePhoneIndex !== -1 && duplicateEmailIndex !== -1) {
         if (duplicatePhoneIndex < duplicateEmailIndex) {
           lessIndex = duplicatePhoneIndex;
           newAr[idx].myErrors[1] = false;
@@ -50,11 +50,11 @@ const validateData = (data, setCriticalError) => {
           newAr[idx].myErrors[2] = false;
         }
       }
-      if (duplicatePhoneIndex !== null && duplicateEmailIndex === null) {
+      if (duplicatePhoneIndex !== -1 && duplicateEmailIndex === -1) {
         lessIndex = duplicatePhoneIndex;
         newAr[idx].myErrors[1] = false;
       }
-      if (duplicatePhoneIndex === null && duplicateEmailIndex !== null) {
+      if (duplicatePhoneIndex === -1 && duplicateEmailIndex !== -1) {
         lessIndex = duplicateEmailIndex;
         newAr[idx].myErrors[2] = false;
       }
