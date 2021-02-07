@@ -71,6 +71,7 @@ const sixthColumn = el => {
 
 // Has children
 const seventhColumn = (el, index, rowArr) => {
+  el = el.trim();
   if (
     el.toLowerCase() !== 'true' &&
     el.toLowerCase() !== 'false' &&
@@ -115,6 +116,7 @@ const ninthColumn = el => {
 
 // License number
 const tenthColumn = (el, index, rowArr) => {
+  el = el.trim();
   if (el.length !== 6 || /\W|_/.test(el)) {
     return true;
   }

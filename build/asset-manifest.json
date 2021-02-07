@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/Radency/static/css/main.3a42abe0.chunk.css",
-    "main.js": "/Radency/static/js/main.b38413e6.chunk.js",
-    "main.js.map": "/Radency/static/js/main.b38413e6.chunk.js.map",
+    "main.js": "/Radency/static/js/main.c4b45361.chunk.js",
+    "main.js.map": "/Radency/static/js/main.c4b45361.chunk.js.map",
     "runtime-main.js": "/Radency/static/js/runtime-main.62b2c22c.js",
     "runtime-main.js.map": "/Radency/static/js/runtime-main.62b2c22c.js.map",
     "static/js/2.fa63732c.chunk.js": "/Radency/static/js/2.fa63732c.chunk.js",
@@ -15,6 +15,6 @@
     "static/js/runtime-main.62b2c22c.js",
     "static/js/2.fa63732c.chunk.js",
     "static/css/main.3a42abe0.chunk.css",
-    "static/js/main.b38413e6.chunk.js"
+    "static/js/main.c4b45361.chunk.js"
   ]
 }

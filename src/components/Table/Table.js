@@ -38,7 +38,7 @@ function Table({ state }) {
                         !item.myErrors[index] ? styles.wrongData : null
                       }
                     >
-                      {el.trim()}
+                      {el}
                       {/* {' ' + item.myErrors[index]} */}
                     </td>
                   ))}
